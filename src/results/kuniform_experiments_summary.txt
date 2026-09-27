@@ -1,0 +1,36 @@
+K-UNIFORME TESSELLATIONEN: EXPERIMENTALSUITE
+================================================================================
+
+Datum: 2026-08-05 13:54:53
+Autor: Stephan Epp
+
+DURCHGEFÜHRTE EXPERIMENTE:
+--------------------------------------------------------------------------------
+
+CLASSIFICATION
+  Beschreibung: Klassifikation aller bekannten k-uniformen Tessellationen
+  Timestamp: 2026-08-05 13:54:53
+
+CONVERGENCE
+  Beschreibung: IDS Konvergenz mit k-Gitter für verschiedene k-Grade
+  Timestamp: 2026-08-05 13:54:53
+
+SPECTRAL
+  Beschreibung: Spektralanalyse k-uniformer Tessellationen
+  Timestamp: 2026-08-05 13:54:53
+
+COMPARISON
+  Beschreibung: Vergleich IDS über verschiedene k-Uniformitätsgrade
+  Timestamp: 2026-08-05 13:54:53
+
+PERFORMANCE
+  Beschreibung: Laufzeitanalyse für k-uniforme Tessellationen
+  Timestamp: 2026-08-05 13:54:53
+
+SYMMETRY
+  Beschreibung: Analyse der Symmetrie-Effekte auf IDS und Spektrum
+  Timestamp: 2026-08-05 13:54:53
+
+VALIDATION
+  Beschreibung: Validierung neuer k-uniformer Code gegen Original (Archimedean)
+  Timestamp: 2026-08-05 13:54:53

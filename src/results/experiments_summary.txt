@@ -1,0 +1,124 @@
+================================================================================
+EXPERIMENTELLE VALIDIERUNG DER IDS-BERECHNUNG
+================================================================================
+
+Autor: Stephan Epp
+Zeitstempel: 2026-08-05 13:55:03
+Zweck: Experimentelle Validierung für die wissenschaftliche Arbeit archimed.tex
+
+
+================================================================================
+Experiment: CONVERGENCE_ANALYSIS
+================================================================================
+
+ERROR: unsupported format string passed to NoneType.__format__
+
+================================================================================
+Experiment: SPECTRAL_ANALYSIS
+================================================================================
+
+ERROR: module 'numpy' has no attribute 'trapz'
+
+================================================================================
+Experiment: COMPARATIVE_ANALYSIS
+================================================================================
+
+Beschreibung: Vergleich verschiedener Archimedean-Gittertypen
+
+Zeitstempel: 2026-08-05 13:55:03
+Gittertypen: (6,6,6), (4,8,8), (3,12,12)
+k-Gitter-Größe (N_k): 20
+Energiepunkte: 120
+
+Vergleichende Analysen:
+
+  (6,6,6)_vs_(4,8,8):
+    - IDS max diff: 1.88e-01
+    - IDS RMSE: 5.02e-02
+    - IDS Korrelation: 0.993984
+
+  (6,6,6)_vs_(3,12,12):
+    - IDS max diff: 2.83e-01
+    - IDS RMSE: 8.29e-02
+    - IDS Korrelation: 0.982214
+
+  (4,8,8)_vs_(3,12,12):
+    - IDS max diff: 3.09e-01
+    - IDS RMSE: 9.80e-02
+    - IDS Korrelation: 0.976672
+
+================================================================================
+Experiment: ENERGY_RESOLUTION
+================================================================================
+
+Beschreibung: Analyse der Energie-Auflösungs-Auswirkungen
+
+Zeitstempel: 2026-08-05 13:55:03
+Gittertypen: (6,6,6), (4,8,8)
+k-Gitter-Größe (N_k): 15
+
+Energie-Auflösungsanalyse:
+
+  (6,6,6):
+    - Getestete Auflösungen: ['points_20', 'points_50', 'points_100', 'points_200', 'points_500']
+
+  (4,8,8):
+    - Getestete Auflösungen: ['points_20', 'points_50', 'points_100', 'points_200', 'points_500']
+
+================================================================================
+Experiment: PERFORMANCE_ANALYSIS
+================================================================================
+
+Beschreibung: Performance- und Skalierungsanalyse
+
+Zeitstempel: 2026-08-05 13:55:03
+Gittertypen: (6,6,6), (4,8,8), (3,12,12)
+Getestete N_k-Werte: [5, 10, 15, 20, 25, 30]
+Energiepunkte: 80
+
+Performance-Analyse:
+
+  (6,6,6):
+    - N_k Werte: ['N_k_5', 'N_k_10', 'N_k_15', 'N_k_20', 'N_k_25', 'N_k_30']
+    - Zeitbereich: 0.000s - 0.053s
+
+  (4,8,8):
+    - N_k Werte: ['N_k_5', 'N_k_10', 'N_k_15', 'N_k_20', 'N_k_25', 'N_k_30']
+    - Zeitbereich: 0.005s - 0.053s
+
+  (3,12,12):
+    - N_k Werte: ['N_k_5', 'N_k_10', 'N_k_15', 'N_k_20', 'N_k_25', 'N_k_30']
+    - Zeitbereich: 0.005s - 0.080s
+
+================================================================================
+Experiment: SYMMETRY_VALIDATION
+================================================================================
+
+Beschreibung: Validierung mathematischer Symmetrien und Eigenschaften
+
+Zeitstempel: 2026-08-05 13:55:05
+Gittertypen: (6,6,6), (4,8,8), (3,12,12)
+k-Gitter-Größe (N_k): 12
+
+Symmetrie-Validierung:
+
+  (6,6,6):
+    - hermiticity: PASS
+    - eigenvalue_reality: PASS
+    - ids_monotonicity: PASS
+    - normalization: PASS
+    - eigenvalue_statistics: N/A
+
+  (4,8,8):
+    - hermiticity: PASS
+    - eigenvalue_reality: PASS
+    - ids_monotonicity: PASS
+    - normalization: PASS
+    - eigenvalue_statistics: N/A
+
+  (3,12,12):
+    - hermiticity: PASS
+    - eigenvalue_reality: PASS
+    - ids_monotonicity: PASS
+    - normalization: PASS
+    - eigenvalue_statistics: N/A

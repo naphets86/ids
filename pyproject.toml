@@ -1,0 +1,124 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ids-calculator"
+version = "1.1.0"
+description = "Integrated Density of States (IDS) Calculator for Archimidean Lattices"
+readme = "README.md"
+authors = [
+    {name = "Stephan Epp", email = "hjstephan86@gmail.com"}
+]
+keywords = ["density-of-states", "integrated-density", "lattice", "physics", "numerical"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+requires-python = ">=3.9"
+
+dependencies = [
+    "numpy>=1.19.0",
+    "scipy>=1.5.0",
+    "matplotlib>=3.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.2.0",
+    "pytest-cov>=2.12.0",
+    "pytest-xdist>=2.3.0",
+    "pytest-timeout>=1.4.0",
+    "black>=21.5b0",
+    "flake8>=3.9.0",
+    "pylint>=2.8.0",
+    "isort>=5.9.0",
+    "mypy>=0.910",
+    "coverage[toml]>=5.5",
+]
+
+docs = [
+    "sphinx>=4.0.0",
+    "sphinx-rtd-theme>=0.5.2",
+]
+
+test = [
+    "pytest>=6.2.0",
+    "pytest-cov>=2.12.0",
+    "pytest-xdist>=2.3.0",
+    "pytest-timeout>=1.4.0",
+    "coverage[toml]>=5.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/hjstephan86/ids"
+Repository = "https://github.com/hjstephan86/ids.git"
+Issues = "https://github.com/hjstephan86/ids/issues"
+Documentation = "https://github.com/hjstephan86/ids#readme"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--cov=src",
+    "--cov-report=html:doc/coverage",
+    "--cov-report=term-missing",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-branch",
+    "--cov-fail-under=80",
+]
+
+markers = [
+    "slow: slow tests (deselect with '-m \"not slow\"')",
+    "integration: integration tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = [
+    "src/experiments.py",
+    "src/experiments_kuniform.py",
+    "*/site-packages/*",
+    "*/tests/*",
+    "*/test_*.py",
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+    "@abstractproperty",
+    "if 0:",
+    "if False:",
+]
+fail_under = 80
+
+[tool.coverage.html]
+directory = "doc/coverage"
+
+[tool.coverage.xml]
+output = "coverage.xml"

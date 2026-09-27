@@ -1,0 +1,576 @@
+{
+  "metadata": {
+    "title": "Umfangreiche Experimente zur IDS von Archimedean-Gittergraphen",
+    "author": "Stephan Epp",
+    "timestamp": "2026-08-05 13:55:03",
+    "purpose": "Experimentelle Validierung für die wissenschaftliche Arbeit archimed.tex"
+  },
+  "experiments": {
+    "convergence_analysis": {
+      "error": "unsupported format string passed to NoneType.__format__"
+    },
+    "spectral_analysis": {
+      "error": "module 'numpy' has no attribute 'trapz'"
+    },
+    "comparative_analysis": {
+      "experiment": "comparative_analysis",
+      "timestamp": "2026-08-05 13:55:03",
+      "description": "Vergleich verschiedener Archimedean-Gittertypen",
+      "lattice_types": [
+        "(6,6,6)",
+        "(4,8,8)",
+        "(3,12,12)"
+      ],
+      "N_k": 20,
+      "energy_points": 120,
+      "pairwise_comparisons": {
+        "(6,6,6)_vs_(4,8,8)": {
+          "lattice_1": "(6,6,6)",
+          "lattice_2": "(4,8,8)",
+          "ids_comparison": {
+            "max_absolute_difference": 0.18775550695297805,
+            "rmse": 0.05018402093058254,
+            "correlation": 0.9939844285872252
+          },
+          "dos_comparison": {
+            "max_absolute_difference": 0.5140987863321897,
+            "rmse": 0.16166340366635548,
+            "correlation": 0.7574249087788126
+          }
+        },
+        "(6,6,6)_vs_(3,12,12)": {
+          "lattice_1": "(6,6,6)",
+          "lattice_2": "(3,12,12)",
+          "ids_comparison": {
+            "max_absolute_difference": 0.28275991068668865,
+            "rmse": 0.08292898770400235,
+            "correlation": 0.982214169566766
+          },
+          "dos_comparison": {
+            "max_absolute_difference": 0.9320336846886199,
+            "rmse": 0.24191989908733477,
+            "correlation": 0.35249805547389546
+          }
+        },
+        "(4,8,8)_vs_(3,12,12)": {
+          "lattice_1": "(4,8,8)",
+          "lattice_2": "(3,12,12)",
+          "ids_comparison": {
+            "max_absolute_difference": 0.3090538855901424,
+            "rmse": 0.09802013701683238,
+            "correlation": 0.9766722941122703
+          },
+          "dos_comparison": {
+            "max_absolute_difference": 0.9539008802734497,
+            "rmse": 0.2515240515812905,
+            "correlation": 0.2984155585197267
+          }
+        }
+      },
+      "overall_statistics": {
+        "ids_mean_variance": 0.002111511135463368,
+        "dos_mean_variance": 0.016436071353698324,
+        "ids_range_comparison": {
+          "(6,6,6)": {
+            "min": 8.271161533457416e-15,
+            "max": 0.9999999999999966
+          },
+          "(4,8,8)": {
+            "min": 1.6930901125533637e-15,
+            "max": 1.0
+          },
+          "(3,12,12)": {
+            "min": 1.274388002533063e-12,
+            "max": 0.9999999999999742
+          }
+        },
+        "dos_range_comparison": {
+          "(6,6,6)": {
+            "min": 9.314216065092784e-14,
+            "max": 0.9414058996548487
+          },
+          "(4,8,8)": {
+            "min": 3.9634961979118226e-15,
+            "max": 0.9564755607206821
+          },
+          "(3,12,12)": {
+            "min": 2.3648860647540544e-13,
+            "max": 0.6377812924648172
+          }
+        }
+      }
+    },
+    "energy_resolution": {
+      "experiment": "energy_resolution_analysis",
+      "timestamp": "2026-08-05 13:55:03",
+      "description": "Analyse der Energie-Auflösungs-Auswirkungen",
+      "lattice_types": [
+        "(6,6,6)",
+        "(4,8,8)"
+      ],
+      "N_k": 15,
+      "energy_resolutions": [
+        20,
+        50,
+        100,
+        200,
+        500
+      ],
+      "results": {
+        "(6,6,6)": {
+          "points_20": {
+            "num_energy_points": 20,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.5263157894736842,
+            "computation_time": 0.0,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 0.006021212486520625,
+              "max": 0.21568393303169697,
+              "mean": 0.09465846982614058
+            }
+          },
+          "points_50": {
+            "num_energy_points": 50,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.20408163265306123,
+            "computation_time": 0.01970672607421875,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 4.916994194581475e-06,
+              "max": 0.39095772085536007,
+              "mean": 0.09799989081269703
+            }
+          },
+          "points_100": {
+            "num_energy_points": 100,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.10101010101010101,
+            "computation_time": 0.012177705764770508,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 1.606639821183361e-11,
+              "max": 0.783194401887648,
+              "mean": 0.09899999999982226
+            }
+          },
+          "points_200": {
+            "num_energy_points": 200,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.05025125628140704,
+            "computation_time": 0.03553652763366699,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 0.0,
+              "max": 1.5742826174521394,
+              "mean": 0.09949999999999992
+            }
+          },
+          "points_500": {
+            "num_energy_points": 500,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.02004008016032064,
+            "computation_time": 0.07376670837402344,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 0.0,
+              "max": 3.947572995450704,
+              "mean": 0.09980000000000007
+            }
+          }
+        },
+        "(4,8,8)": {
+          "points_20": {
+            "num_energy_points": 20,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.5263157894736842,
+            "computation_time": 0.005009174346923828,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 0.004921734116565258,
+              "max": 0.24163347535113994,
+              "mean": 0.09472232760115129
+            }
+          },
+          "points_50": {
+            "num_energy_points": 50,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.20408163265306123,
+            "computation_time": 0.00896906852722168,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 2.56836886655121e-06,
+              "max": 0.39927940712774834,
+              "mean": 0.09799994296674035
+            }
+          },
+          "points_100": {
+            "num_energy_points": 100,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.10101010101010101,
+            "computation_time": 0.016499996185302734,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 4.279976373311485e-12,
+              "max": 0.7820345241201068,
+              "mean": 0.09899999999995251
+            }
+          },
+          "points_200": {
+            "num_energy_points": 200,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.05025125628140704,
+            "computation_time": 0.030783414840698242,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 0.0,
+              "max": 1.5717235684227897,
+              "mean": 0.09949999999999999
+            }
+          },
+          "points_500": {
+            "num_energy_points": 500,
+            "energy_range": [
+              -5.0,
+              5.0
+            ],
+            "dE_average": 0.02004008016032064,
+            "computation_time": 0.07194018363952637,
+            "max_diff_to_finest": null,
+            "rmse_to_finest": null,
+            "dos_statistics": {
+              "min": 0.0,
+              "max": 3.9411560693222043,
+              "mean": 0.09980000000000007
+            }
+          }
+        }
+      }
+    },
+    "performance_analysis": {
+      "experiment": "performance_analysis",
+      "timestamp": "2026-08-05 13:55:03",
+      "description": "Performance- und Skalierungsanalyse",
+      "lattice_types": [
+        "(6,6,6)",
+        "(4,8,8)",
+        "(3,12,12)"
+      ],
+      "N_k_values": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "energy_points": 80,
+      "results": {
+        "(6,6,6)": {
+          "N_k_5": {
+            "N_k": 5,
+            "num_k_points": 25,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.0,
+            "std_time_seconds": 0.0,
+            "estimated_flops": 2000
+          },
+          "N_k_10": {
+            "N_k": 10,
+            "num_k_points": 100,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.008230050404866537,
+            "std_time_seconds": 0.006444185027452557,
+            "estimated_flops": 8000
+          },
+          "N_k_15": {
+            "N_k": 15,
+            "num_k_points": 225,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.01064904530843099,
+            "std_time_seconds": 0.007530530783589514,
+            "estimated_flops": 18000
+          },
+          "N_k_20": {
+            "N_k": 20,
+            "num_k_points": 400,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.02702506383260091,
+            "std_time_seconds": 0.007922970273131746,
+            "estimated_flops": 32000
+          },
+          "N_k_25": {
+            "N_k": 25,
+            "num_k_points": 625,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.03665788968404134,
+            "std_time_seconds": 0.008069180114589906,
+            "estimated_flops": 50000
+          },
+          "N_k_30": {
+            "N_k": 30,
+            "num_k_points": 900,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.05272738138834635,
+            "std_time_seconds": 0.010154138384323629,
+            "estimated_flops": 72000
+          }
+        },
+        "(4,8,8)": {
+          "N_k_5": {
+            "N_k": 5,
+            "num_k_points": 25,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.005291382471720378,
+            "std_time_seconds": 0.007483144855210228,
+            "estimated_flops": 2000
+          },
+          "N_k_10": {
+            "N_k": 10,
+            "num_k_points": 100,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.008702675501505533,
+            "std_time_seconds": 0.008424304314680171,
+            "estimated_flops": 8000
+          },
+          "N_k_15": {
+            "N_k": 15,
+            "num_k_points": 225,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.014518499374389648,
+            "std_time_seconds": 0.0065389579964582265,
+            "estimated_flops": 18000
+          },
+          "N_k_20": {
+            "N_k": 20,
+            "num_k_points": 400,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.025075674057006836,
+            "std_time_seconds": 0.0004107499379032046,
+            "estimated_flops": 32000
+          },
+          "N_k_25": {
+            "N_k": 25,
+            "num_k_points": 625,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.036301612854003906,
+            "std_time_seconds": 0.009116640114963421,
+            "estimated_flops": 50000
+          },
+          "N_k_30": {
+            "N_k": 30,
+            "num_k_points": 900,
+            "num_bands": 2,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.05278444290161133,
+            "std_time_seconds": 0.011683286063723656,
+            "estimated_flops": 72000
+          }
+        },
+        "(3,12,12)": {
+          "N_k_5": {
+            "N_k": 5,
+            "num_k_points": 25,
+            "num_bands": 3,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.005322456359863281,
+            "std_time_seconds": 0.007527089969257587,
+            "estimated_flops": 6750
+          },
+          "N_k_10": {
+            "N_k": 10,
+            "num_k_points": 100,
+            "num_bands": 3,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.011237541834513346,
+            "std_time_seconds": 0.00411141704015764,
+            "estimated_flops": 27000
+          },
+          "N_k_15": {
+            "N_k": 15,
+            "num_k_points": 225,
+            "num_bands": 3,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.021126826604207356,
+            "std_time_seconds": 0.008911549306665626,
+            "estimated_flops": 60750
+          },
+          "N_k_20": {
+            "N_k": 20,
+            "num_k_points": 400,
+            "num_bands": 3,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.035840352376302086,
+            "std_time_seconds": 0.0013401069439568447,
+            "estimated_flops": 108000
+          },
+          "N_k_25": {
+            "N_k": 25,
+            "num_k_points": 625,
+            "num_bands": 3,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.05802051226298014,
+            "std_time_seconds": 0.01039457270734652,
+            "estimated_flops": 168750
+          },
+          "N_k_30": {
+            "N_k": 30,
+            "num_k_points": 900,
+            "num_bands": 3,
+            "num_energy_points": 80,
+            "mean_time_seconds": 0.07975276311238606,
+            "std_time_seconds": 0.002046450883289826,
+            "estimated_flops": 243000
+          }
+        }
+      }
+    },
+    "symmetry_validation": {
+      "experiment": "symmetry_validation",
+      "timestamp": "2026-08-05 13:55:05",
+      "description": "Validierung mathematischer Symmetrien und Eigenschaften",
+      "lattice_types": [
+        "(6,6,6)",
+        "(4,8,8)",
+        "(3,12,12)"
+      ],
+      "N_k": 12,
+      "validation_results": {
+        "(6,6,6)": {
+          "lattice_type": "(6,6,6)",
+          "hermiticity": {
+            "max_violation": 0.0,
+            "num_k_points_checked": 36,
+            "status": "PASS"
+          },
+          "eigenvalue_reality": {
+            "max_imaginary_part": 0.0,
+            "status": "PASS"
+          },
+          "ids_monotonicity": {
+            "num_violations": 0,
+            "min_dN": 0.0,
+            "status": "PASS"
+          },
+          "normalization": {
+            "N_at_E_min": 1.7123524820306102e-12,
+            "N_at_E_max": 0.9999999999982916,
+            "status": "PASS"
+          },
+          "eigenvalue_statistics": {
+            "total_eigenvalues": 288,
+            "min": -1.0000000000000002,
+            "max": 1.0000000000000002,
+            "mean": 0.0,
+            "std": 1.0
+          }
+        },
+        "(4,8,8)": {
+          "lattice_type": "(4,8,8)",
+          "hermiticity": {
+            "max_violation": 0.0,
+            "num_k_points_checked": 36,
+            "status": "PASS"
+          },
+          "eigenvalue_reality": {
+            "max_imaginary_part": 0.0,
+            "status": "PASS"
+          },
+          "ids_monotonicity": {
+            "num_violations": 0,
+            "min_dN": 0.0,
+            "status": "PASS"
+          },
+          "normalization": {
+            "N_at_E_min": 4.574396417211801e-13,
+            "N_at_E_max": 0.9999999999995445,
+            "status": "PASS"
+          },
+          "eigenvalue_statistics": {
+            "total_eigenvalues": 288,
+            "min": -0.8000000000000002,
+            "max": 0.8000000000000002,
+            "mean": 0.0,
+            "std": 0.8
+          }
+        },
+        "(3,12,12)": {
+          "lattice_type": "(3,12,12)",
+          "hermiticity": {
+            "max_violation": 0.0,
+            "num_k_points_checked": 36,
+            "status": "PASS"
+          },
+          "eigenvalue_reality": {
+            "max_imaginary_part": 0.0,
+            "status": "PASS"
+          },
+          "ids_monotonicity": {
+            "num_violations": 0,
+            "min_dN": 0.0,
+            "status": "PASS"
+          },
+          "normalization": {
+            "N_at_E_min": 1.0573519837464573e-10,
+            "N_at_E_max": 0.9999999999960586,
+            "status": "PASS"
+          },
+          "eigenvalue_statistics": {
+            "total_eigenvalues": 432,
+            "min": -1.686140661634508,
+            "max": 1.1861406616345076,
+            "mean": -6.32210333467103e-17,
+            "std": 1.224744871391589
+          }
+        }
+      }
+    }
+  }
+}
