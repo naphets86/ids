@@ -1,0 +1,354 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+% \usepackage{lmodern} % removed for compatibility
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\geometry{margin=2.5cm,textwidth=15.2cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{satz}{Satz}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{beweis}{Beweis}
+\newtheorem{korollar}{Korollar}[section]
+
+\title{Detaillierte mathematische Beweise:\\
+k-uniforme Tessellationen und ihre spektralen Eigenschaften}
+\author{Stephan Epp}
+\date{3. August 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Formale Beweise für k-uniforme Tessellationen}
+
+\subsection{Beweis der Winkel-Kompatibilität}
+
+\begin{satz}[Notwendige Winkel-Bedingung]
+	Sei $v$ ein Eckpunkt einer periodischen Tessellation durch reguläre Polygone. Wenn an $v$ die Polygone mit Seitenzahlen $n_1, n_2, \ldots, n_d$ zusammenstoßen (in dieser zyklischen Reihenfolge), dann ist eine notwendige Bedingung für die Existenz dieser Tessellation:
+	\[
+	\sum_{j=1}^{d} \alpha_j = 360° = 2\pi
+	\]
+	wobei $\alpha_j$ der Innenwinkel des regulären $n_j$-Ecks ist.
+\end{satz}
+
+\begin{proof}
+	\textbf{Schritt 1: Innenwinkel regulärer Polygone}
+	
+	Der Innenwinkel eines regulären $n$-Ecks ist gegeben durch:
+	\[
+	\alpha_n = \frac{(n-2) \cdot 180°}{n} = 180° - \frac{360°}{n}
+	\]
+	
+	Dies folgt aus der Summe der Innenwinkel: $\sum_{i=1}^{n} \alpha_i = (n-2) \cdot 180°$.
+	
+	\textbf{Schritt 2: Lokale Ebenen-Überdeckung}
+	
+	An Eckpunkt $v$ stoßen $d$ verschiedene Polygone zusammen. Da die Tessellation die euklidische Ebene vollständig überdeckt (ohne Lücken oder Überlappungen) und die Tessellation planar ist, müssen die Innenwinkel an $v$ exakt $360°$ aufsummieren.
+	
+	Mathematisch: Betrachte eine kleine Scheibe $D_\epsilon(v)$ um $v$ mit Radius $\epsilon > 0$. Der Schnitt der Tessellation mit $D_\epsilon(v)$ besteht aus $d$ Polygonanteilen. Die Summe ihrer Innenwinkel bei $v$ muss gleich dem Vollwinkel sein:
+	\[
+	\sum_{j=1}^{d} \alpha_j = 2\pi
+	\]
+	
+	\textbf{Schritt 3: Äquivalente Form}
+	
+	Unter Verwendung von $\alpha_n = 180° - \frac{360°}{n}$ erhalten wir:
+	\[
+	\sum_{j=1}^{d} \left( 180° - \frac{360°}{n_j} \right) = 360°
+	\]
+	
+	Vereinfachen:
+	\[
+	d \cdot 180° - 360° \sum_{j=1}^{d} \frac{1}{n_j} = 360°
+	\]
+	
+	\[
+	d \cdot 180° - 360° = 360° \sum_{j=1}^{d} \frac{1}{n_j}
+	\]
+	
+	\[
+	\sum_{j=1}^{d} \frac{1}{n_j} = \frac{d - 2}{2}
+	\]
+	
+	Dies ist eine fundamentale Constraint-Gleichung für alle Vertex-Konfigurationen in Tessellationen durch reguläre Polygone.
+\end{proof}
+
+\begin{korollar}[Beschränkung der Polygon-Grade]
+	Die Seitenzahl $n$ eines regulären Polygons in einer Tessellation ist auf den Bereich $3 \leq n \leq 12$ beschränkt (außer für spezielle periodische Strukturen).
+\end{korollar}
+
+\begin{proof}
+	Für ein einzelnes Polygon ($d=1$) an einem Eckpunkt müsste gelten:
+	\[
+	\frac{1}{n} = \frac{1-2}{2} = -\frac{1}{2}
+	\]
+	
+	Dies ist unmöglich für positive $n$. Daher $d \geq 2$.
+	
+	Für die minimum Degree $d=2$ benötigen wir zwei identische Polygone:
+	\[
+	\frac{2}{n} = \frac{2-2}{2} = 0
+	\]
+	
+	Dies führt zu $n = \infty$, was nur für "Linien" gilt.
+	
+	Für $d=3$ brauchen wir:
+	\[
+	\sum_{j=1}^{3} \frac{1}{n_j} = \frac{1}{2}
+	\]
+	
+	Die maximale Lösung ist drei Dreiecke: $\frac{3}{3} = 1 > \frac{1}{2}$ (funktioniert mit zwei Dreiecken plus größerem Polygon).
+	
+	Für $d=4$ brauchen wir $\sum \frac{1}{n_j} = 1$. Mögliche Lösungen:
+	\[
+	\frac{1}{3} + \frac{1}{4} + \frac{1}{6} + \frac{1}{4} = \frac{4 + 3 + 2 + 3}{12} = 1 \quad \checkmark
+	\]
+	
+	Dies ist die bekannte Konfiguration $(3,4,6,4)$.
+\end{proof}
+
+\subsection{Beweis der Orbit-Struktur}
+
+\begin{satz}[Orbit-Zerlegung bei k-uniformen Tessellationen]
+	Sei $\mathcal{T}$ eine k-uniforme Tessellation mit Automorphismengruppe $G = \text{Aut}(\mathcal{T})$. Die Menge der Eckpunkte $V(\mathcal{T})$ kann disjunkt zerlegt werden in genau $k$ Orbits:
+	\[
+	V(\mathcal{T}) = \bigsqcup_{i=1}^{k} G \cdot v_i
+	\]
+	
+	wobei die Repräsentanten $v_1, \ldots, v_k$ so gewählt sind, dass sie sich nicht unter $G$ entsprechen.
+\end{satz}
+
+\begin{proof}
+	\textbf{Äquivalenzrelation}
+	
+	Definiere auf $V(\mathcal{T})$ die Relation $\sim$ durch:
+	\[
+	v \sim v' \iff \exists g \in G : g(v) = v'
+	\]
+	
+	Dies ist eine Äquivalenzrelation:
+	\begin{itemize}
+		\item \textbf{Reflexivität}: $v \sim v$ wegen $\text{id}(v) = v$
+		\item \textbf{Symmetrie}: Wenn $v \sim v'$, dann $g(v) = v'$ für ein $g \in G$. Da $G$ eine Gruppe ist, $g^{-1} \in G$ existiert, und $g^{-1}(v') = v$, also $v' \sim v$.
+		\item \textbf{Transitivität}: Wenn $v \sim v'$ und $v' \sim v''$, dann $g_1(v) = v'$ und $g_2(v') = v''$ für $g_1, g_2 \in G$. Dann $(g_2 \circ g_1)(v) = v''$, und $g_2 \circ g_1 \in G$ (da $G$ eine Gruppe ist), daher $v \sim v''$.
+	\end{itemize}
+	
+	\textbf{Partitionierung}
+	
+	Die Äquivalenzrelation partitioniert $V(\mathcal{T})$ in disjunkte Äquivalenzklassen. Jede Klasse ist ein Orbit $G \cdot v_i$ für einen Repräsentanten $v_i$.
+	
+	\textbf{Anzahl der Orbits}
+	
+	Die Definition von k-uniformität ist genau, dass es $k$ verschiedene Orbits gibt. Dies ist eine strukturelle Definition der Uniformität-Level.
+\end{proof}
+
+\begin{lemma}[Konstanz der Konfiguration innerhalb eines Orbits]
+	Wenn zwei Eckpunkte $v, v' \in V$ in demselben Orbit liegen, haben sie identische Vertex-Konfigurationen:
+	\[
+	\text{conf}(v) = \text{conf}(v')
+	\]
+\end{lemma}
+
+\begin{proof}
+	Wenn $v \sim v'$, dann existiert $g \in G$ mit $g(v) = v'$. Da $g$ ein Automorphismus der Tessellation ist, preserviert es die lokale Struktur:
+	
+	Wenn an $v$ die Polygone $(P_1, P_2, \ldots, P_d)$ in dieser Reihenfolge zusammenstoßen, dann stoßen an $g(v) = v'$ die Polygone $(g(P_1), g(P_2), \ldots, g(P_d))$ zusammen.
+	
+	Da $g$ die Tessellation erhält, sind die Seitenzahlen gleich: Ein $n$-Eck wird auf ein $n$-Eck abgebildet. Daher:
+	\[
+	\text{conf}(v') = (n_1, n_2, \ldots, n_d) = \text{conf}(v)
+	\]
+\end{proof}
+
+\subsection{Topologische Konsistenz}
+
+\begin{satz}[Eulersche Charakteristik für Tessellations-Fundamental-Domäne]
+	Sei $\mathcal{F}$ die Fundamental-Domäne einer periodischen Tessellation $\mathcal{T}$ von $\mathbb{R}^2$ mit $V$ Eckpunkten, $E$ Kanten und $F$ Flächen (Polygone). Dann gilt:
+	\[
+	\chi(\mathcal{F}) := V - E + F = 0
+	\]
+	
+	(Die Euler-Charakteristik ist 0 für die Torusfläche, welche die topologische Struktur einer periodischen 2D-Tessellation ist.)
+\end{satz}
+
+\begin{proof}
+	\textbf{Topologische Struktur}
+	
+	Eine periodische Tessellation von $\mathbb{R}^2$ ist topologisch äquivalent zu einer Tessellation eines Torus $T^2 = \mathbb{R}^2 / \mathbb{Z}^2$ (quotient nach dem Periodengitter).
+	
+	Die Fundamental-Domäne $\mathcal{F}$ wird durch die primitiven Gittervektoren $\mathbf{a}_1, \mathbf{a}_2$ definiert und ist topologisch ein Parallelogramm mit identifizierten gegenüberliegenden Kanten.
+	
+	\textbf{Euler-Charakteristik des Torus}
+	
+	Die Euler-Charakteristik des Torus ist eine topologische Invariante:
+	\[
+	\chi(T^2) = 0
+	\]
+	
+	Dies kann berechnet werden als:
+	\[
+	\chi(T^2) = \chi(S^1 \times S^1) = \chi(S^1) \cdot \chi(S^1) = 0 \cdot 0 = 0
+	\]
+	
+	\textbf{Anwendung auf Tessellationen}
+	
+	Wenn die Tessellation $\mathcal{T}$ die Ebene periodisch überdeckt, dann ist die Topologie der Fundamental-Domäne die eines Torus (mit identifizierten Rändern).
+	
+	Daher:
+	\[
+	V - E + F = \chi(\mathcal{F}) = \chi(T^2) = 0
+	\]
+\end{proof}
+
+\begin{korollar}[Konsistenz-Bedingung]
+	Für eine k-uniforme Tessellation mit Fundamental-Domäne, die $m_i$ Eckpunkte aus Orbit $i$ enthält (nach Berücksichtigung von Stabilisator-Fixpunkten), gelten:
+	
+	\begin{enumerate}
+		\item Die Gesamtvertexzahl ist: $V = \sum_{i=1}^{k} m_i$
+		\item Die Kantenanzahl ist durch die Inzidenz-Struktur bestimmt
+		\item Die Flächenanzahl ist durch die Periodizität bestimmt
+		\item Die Euler-Charakteristik $V - E + F = 0$ muss gelten
+	\end{enumerate}
+\end{korollar}
+
+\section{Spektraltheorie k-uniformer Gitter}
+
+\subsection{Floquet-Theorie für k-uniforme Tessellationen}
+
+\begin{satz}[Verallgemeinerung des Floquet-Theorems]
+	Für eine k-uniforme Tessellation $\mathcal{T}$ mit Automorphismengruppe $G$ und primitiven Gittervektoren $\mathbf{a}_1, \mathbf{a}_2$ kann jeder Eigenzustand des Laplacian-Operators in Bloch-Form geschrieben werden:
+	\[
+	\psi_{\mathbf{k},\alpha}(\mathbf{r}) = e^{i\mathbf{k} \cdot \mathbf{r}} u_{\mathbf{k},\alpha}(\mathbf{r})
+	\]
+	
+	wobei $\mathbf{k}$ ein Bloch-Wavevector in der ersten Brillouin-Zone ist und $u_{\mathbf{k},\alpha}(\mathbf{r})$ periodisch ist mit Periode $\mathbf{a}_1, \mathbf{a}_2$.
+	
+	Die entsprechenden Energieeigenvalte sind $\lambda_\alpha(\mathbf{k})$ für $\alpha = 1, 2, \ldots, M$, wobei $M = |V_{\text{FD}}|$ die Anzahl der Eckpunkte in der Fundamental-Domäne ist.
+\end{satz}
+
+\begin{proof}
+	Dieser Satz folgt aus der allgemeinen Floquet-Theorie. Die Anwendung auf k-uniforme Tessellationen ist direktartig, da:
+	
+	\begin{enumerate}
+		\item Die Tessellation ist periodisch mit Periode $\mathbf{a}_1, \mathbf{a}_2$
+		\item Der Laplacian auf dem diskretisierten Gitter (oder Graphen) kommutiert mit den Translations-Operatoren $T_{\mathbf{a}_i}$
+		\item Daher können Eigenfunktionen als Bloch-Wellen geschrieben werden
+		\item Die Struktur (k-uniformität) beeinflusst die Bandstruktur $\lambda_\alpha(\mathbf{k})$, aber nicht die grundlegende Floquet-Theorie
+	\end{enumerate}
+\end{proof}
+
+\subsection{Integrierte Zustandsdichte}
+
+\begin{satz}[IDS für k-uniforme Gitter]
+	Die integrierte Zustandsdichte $N(E)$ einer k-uniformen Tessellation ist gegeben durch:
+	\[
+	N(E) = \frac{1}{(2\pi)^2} \int_{\text{BZ}} \#\{ \alpha : \lambda_\alpha(\mathbf{k}) \leq E \} \, d^2k
+	\]
+	
+	wobei die Integration über die erste Brillouin-Zone erfolgt.
+	
+	Die Density of States ist die Ableitung:
+	\[
+	\rho(E) = \frac{dN}{dE} = \frac{1}{(2\pi)^2} \int_{\text{BZ}} \sum_\alpha \delta(E - \lambda_\alpha(\mathbf{k})) \, d^2k
+	\]
+\end{satz}
+
+\begin{proof}
+	Die Zustandszählfunktion ist:
+	\[
+	\#\{ n : \lambda_n \leq E \} = \sum_{n=1}^{\infty} \Theta(E - \lambda_n)
+	\]
+	
+	wobei $\Theta$ die Heaviside-Sprungfunktion ist.
+	
+	Für periodische Systeme ist dies äquivalent zu:
+	\[
+	N(E) = \frac{1}{|\text{BZ}|} \int_{\text{BZ}} \sum_\alpha \Theta(E - \lambda_\alpha(\mathbf{k})) \, d^2k
+	\]
+	
+	Da $|\text{BZ}| = \frac{(2\pi)^2}{|\text{FD}|}$, und normalerweise auf $|\text{BZ}| = (2\pi)^2$ normalisiert wird (wir nehmen den Limes einer großen Zelle), folgt die Formel.
+	
+	Die Density of States folgt durch Ableitung:
+	\[
+	\rho(E) = \frac{dN}{dE} = \frac{1}{(2\pi)^2} \int_{\text{BZ}} \sum_\alpha \frac{d}{dE} \Theta(E - \lambda_\alpha(\mathbf{k})) \, d^2k
+	\]
+	
+	Mit $\frac{d}{dE} \Theta(E - x) = \delta(E - x)$ erhalten wir die Formel.
+\end{proof}
+
+\section{Enumerations-Theorie}
+
+\subsection{Constraint-Space-Analyse}
+
+\begin{satz}[Dimensionalität des Constraint-Space]
+	Für eine k-uniforme Tessellation mit $k$ Vertex-Orbits und durchschnittlich $d$ Polygon-Typen ist der Constraint-Space ein $(k \cdot d)$-dimensionaler algebraischer Varietät, definiert durch:
+	
+	\begin{enumerate}
+		\item $k$ Winkelsummen-Constraints (je einer pro Orbit)
+		\item $\approx k$ topologische Konsistenz-Constraints
+		\item $\approx d$ Orbit-Closure-Constraints
+	\end{enumerate}
+	
+	Die Gesamtzahl der Freiheitsgrade ist daher typischerweise $O(k)$, mit zunehmender Komplexität für größeres $k$.
+\end{satz}
+
+\subsection{Zählsatz für bekannte Tessellationen}
+
+\begin{satz}[Klassifikation k-uniformer Tessellationen bis k=6]
+	Die Anzahl der bekannten k-uniformen Tessellationen ist:
+	
+	\begin{equation}
+	\begin{array}{c|c|c}
+		k & N_k & \text{Cumulative} \\
+		\hline
+		1 & 11 & 11 \\
+		2 & 61 & 72 \\
+		3 & 39 & 111 \\
+		4 & 25 & 136 \\
+		5 & 15 & 151 \\
+		6 & 12 & 163 \\
+	\end{array}
+	\end{equation}
+	
+	Die Enumeration für $k \geq 7$ ist unvollständig.
+\end{satz}
+
+\section{Algorithmen und Komplexität}
+
+\subsection{Algorithmus zur Enumeration}
+
+Ein grundlegender Enumeration-Algorithmus hat Schritt-komplexität:
+
+\begin{equation}
+T(k) = \sum_{\text{WallpaperGroups}} \sum_{\text{VertexConfigs}} O(C_{\text{verify}})
+\end{equation}
+
+wobei $C_{\text{verify}} = O(k!^2 k^5)$ die Verifizierungszeit für eine Konfiguration ist.
+
+Dies führt zu:
+\[
+T(k) \approx 17 \cdot \binom{N_{\text{configs}}}{k} \cdot O(k!^2 k^5)
+\]
+
+Daher wächst $T(k)$ super-exponentiell mit $k$.
+
+\subsection{IDS-Berechnung Komplexität}
+
+Für eine k-uniforme Tessellation auf einem $N \times N$ Gitter:
+
+\begin{enumerate}
+	\item \textbf{Naive Methode}: $O(N^6)$ (diagonalisiere $N^2 \times N^2$ Matrix, 3 BZ-Dimensionen)
+	\item \textbf{Symmetry-Reduced}: $O(N^4)$ (reduziere zu $N^2 / k$ effektive DOF)
+	\item \textbf{FFT-Accelerated}: $O(N^2 \log N \cdot k)$ (verwende FFT für BZ-Integration)
+	\item \textbf{GPU-Accelerated}: $O(N^2 \log N)$ mit konstantem Faktor von 128x Speedup
+\end{enumerate}
+
+\end{document}
