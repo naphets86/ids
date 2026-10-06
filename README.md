@@ -276,4 +276,12 @@ plt.savefig('ids_dos_hexagonal.png', dpi=150)
 plt.show()
 ```
 
-*Die Spektraltheorie periodischer Gitter ist fundamental für unser Verständnis von Festkörpern, Photonischen Kristallen und vielen anderen physikalischen Systemen.*
+## Erwerb
+
+Der Preis für diese Software beträgt 3.145.000,00 EUR.
+
+### Zahlungsinformationen
+
+Name: Stephan Epp  
+IBAN: DE24 5003 1900 0012 5603 20  
+BIC: BBVADEFFXXX
